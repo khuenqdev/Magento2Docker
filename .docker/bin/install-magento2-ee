@@ -21,6 +21,7 @@ chmod u+w -R ./var ./vendor ./pub/static ./pub/media ./app/etc \
     --timezone=America/Chicago \
     --use-rewrites=1 \
     --backend-frontname=admin \
+    --elasticsearch-host=elasticsearch \
     --use-sample-data \
 && mv ./app/etc/env.php ./app/etc/env.original.php;
 cp -rv /var/www/env.sample.php ./app/etc/env.php;
