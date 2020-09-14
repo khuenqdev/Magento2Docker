@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 if [ "$2" == "clone" ]; then
-  git clone https://github.com/clean-docker/Magento2.git $1 && cd $1;
+  git clone https://github.com/khuenqdev/Magento2.git $1 && cd $1;
 fi
 
 git config --global core.autocrlf false
@@ -10,7 +10,7 @@ git config --global diff.renamelimit 5000
 
 sudo chmod -R u+x ./*
 
-docker image pull rafaelcgstz/magento2
+docker image pull khuenqdev/magento2
 
 if [ "$(uname)" == "Darwin" ]; then
     git checkout -f mac;
