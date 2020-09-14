@@ -13,7 +13,7 @@ RUN apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	libfreetype6-dev \
 	libicu-dev \
-  libssl-dev \
+  	libssl-dev \
 	libjpeg62-turbo-dev \
 	libmcrypt-dev \
 	libedit-dev \
@@ -22,7 +22,7 @@ RUN apt-get update \
 	apt-utils \
 	gnupg \
 	redis-tools \
-	mysql-client \
+	mariadb-client \
 	git \
 	vim \
 	wget \
@@ -30,22 +30,32 @@ RUN apt-get update \
 	lynx \
 	psmisc \
 	unzip \
+	htop \
+	nano \
+	libsodium-dev \
 	tar \
 	cron \
 	bash-completion \
+	libonig-dev \
+	libzip-dev \
 	&& apt-get clean
 
 # Install Magento Dependencies
 
-RUN docker-php-ext-configure \
-  	gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
+RUN echo "Install mcrypt" \
+	&& apt-get update && apt-get install -y libmcrypt-dev \
+	&& pecl install mcrypt-1.0.3
+
+RUN echo "Install PHP extensions" \
+	docker-php-ext-configure \
+  	mcrypt \
+  	gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/; \
   	docker-php-ext-install \
   	opcache \
   	gd \
   	bcmath \
   	intl \
   	mbstring \
-  	mcrypt \
   	pdo_mysql \
   	soap \
   	xsl \
@@ -63,9 +73,9 @@ RUN apt-get update \
 
 # Install Node, NVM, NPM and Grunt
 
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   	&& apt-get install -y nodejs build-essential \
-    && curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh \
+    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | sh \
     && npm i -g grunt-cli yarn
 
 # Install Composer
