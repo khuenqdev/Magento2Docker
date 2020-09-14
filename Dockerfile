@@ -48,8 +48,7 @@ RUN echo "Install mcrypt" \
 
 RUN echo "Install PHP extensions" \
 	docker-php-ext-configure \
-  	mcrypt \
-  	gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/; \
+  	gd --with-freetype --with-jpeg; \
   	docker-php-ext-install \
   	opcache \
   	gd \
