@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+docker build --tag khuenqdev/magento2 . && docker push khuenqdev/magento2
