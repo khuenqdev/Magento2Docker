@@ -59,6 +59,7 @@ RUN echo "Install PHP extensions" \
   	pdo_mysql \
   	soap \
   	xsl \
+	sockets \
   	zip
 
 # Install oAuth
