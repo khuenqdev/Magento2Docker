@@ -131,5 +131,8 @@ RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& a2enmod rewrite \
 	&& a2enmod headers
 
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --enable-gd-jis-conv
+RUN docker-php-ext-install -j$(nproc) gd
+
 VOLUME /var/www/html
 WORKDIR /var/www/html
