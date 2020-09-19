@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+docker-php-ext-configure gd --with-freetype --with-jpeg
+docker-php-ext-install gd
 if [ $@ ]; then
   composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition:$1 . ;
 else
