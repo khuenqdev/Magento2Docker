@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-docker-php-ext-configure gd --with-freetype --with-jpeg
-docker-php-ext-install gd
+docker-php-ext-configure gd --with-freetype --with-jpeg --with-png --with-xpm --enable-gd-jis-conv
+docker-php-ext-install -j$(nproc) gd
 if [ $@ ]; then
   composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition:$1 . ;
 else
