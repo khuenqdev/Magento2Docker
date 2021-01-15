@@ -21,6 +21,13 @@ install-magento2
 
 For Magento 2 EE, type: ```install-magento2-ee```
 
+The installation scripts can be modified to your needs and they are located inside the apache container at:  ```/usr/local/bin/install-magento2``` and ```/usr/local/bin/install-magento2-ee```
+
+
+### Build
+
+Just modify the Dockerfile and run the ```build``` shell script located at the root of this repository.
+
 ---
 
 You can specify the version that want install (e.g. `install-magento2 2.2`).

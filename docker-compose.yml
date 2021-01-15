@@ -23,7 +23,7 @@ services:
       - <project_name>-network
 
   db:
-    image: mariadb
+    image: mysql
     ports:
      - 3300:3306
     environment:
