@@ -23,7 +23,7 @@ services:
       - <project_name>-network
 
   db:
-    image: mariadb
+    image: mariadb:10.4
     ports:
      - 3300:3306
     environment:
