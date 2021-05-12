@@ -124,7 +124,7 @@ RUN curl -o /etc/bash_completion.d/n98-magerun2.phar.bash https://raw.githubuser
 RUN echo "source /etc/bash_completion" >> /root/.bashrc
 RUN echo "source /etc/bash_completion" >> /var/www/.bashrc
 
-RUN chmod 777 -Rf /var/www /var/www/.* \
+RUN chmod 777 -Rf /var/* /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
 	&& usermod -u 1000 www-data \
 	&& chsh -s /bin/bash www-data\
