@@ -23,7 +23,7 @@ services:
       - <project_name>-network
 
   db:
-    image: mysql
+    image: mysql/mysql-server
     ports:
      - 3300:3306
     environment:
@@ -33,18 +33,6 @@ services:
       - MYSQL_PASSWORD=magento
     volumes:
       - dbdata:/var/lib/mysql
-    networks:
-      - <project_name>-network
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    environment:
-     - PMA_HOST=db
-     - PMA_USER=root
-     - PMA_PASSWORD=root
-     - MYSQL_ROOT_PASSWORD=root
-    ports:
-     - 8080:80
     networks:
       - <project_name>-network
 
