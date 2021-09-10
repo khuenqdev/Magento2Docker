@@ -1,17 +1,15 @@
 version: '2'
 services:
   apache:
-    image: khuenqdev/magento2
-    # build: .
+    image: khuenqdev/magento243
     ports:
       - "80:80" # web
       - "9001:9000" # xdebug
-      # - "35729:35729" # live reload
     volumes:
       - ./src:/var/www/html
+      - ./logs:/var/log/apache2
       - ~/.composer:/var/www/.composer
       - ~/.npm:/var/www/.npm
-      # - ~/.nvm:/var/www/.nvm
     environment:
       XDEBUG_CONFIG: "remote_host=localhost"
       PHP_IDE_CONFIG: "serverName=Docker"
@@ -85,9 +83,4 @@ networks:
 volumes:
   dbdata:
     driver: local
-  data01:
-    driver: local
-  data02:
-    driver: local
-  data03:
-    driver: local
+

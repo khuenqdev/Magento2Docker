@@ -2,3 +2,5 @@
 .DS_Store
 /.idea
 /docker-compose.yml
+/logs/*
+!/logs/.gitkeep

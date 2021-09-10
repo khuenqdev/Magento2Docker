@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-MAINTAINER Rafael Corrêa Gomes <rafaelcgstz@gmail.com>
+MAINTAINER Khue Quang Nguyen <khuenq.devmail@gmail.com>
 
 ENV XDEBUG_PORT 9000
 
@@ -80,8 +80,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
 
 # Install Composer
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer --version=1.10.19
-#RUN composer global require hirak/prestissimo
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer --version=2.1.6
 
 # Install Code Sniffer
 
@@ -107,7 +106,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install golang-go \
 
 RUN wget https://files.magerun.net/n98-magerun2.phar \
 	&& chmod +x ./n98-magerun2.phar \
-	&& mv ./n98-magerun2.phar /usr/local/bin/
+	&& cp ./n98-magerun2.phar /usr/local/bin/
 
 # Configuring system
 

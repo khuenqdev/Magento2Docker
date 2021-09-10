@@ -7,10 +7,10 @@
 Execute in your terminal, change the *MYMAGENTO2* to use the name of your project:
 
 ```
-curl -s https://raw.githubusercontent.com/khuenqdev/Magento2/master/init | bash -s MYMAGENTO2 clone
+curl -s https://raw.githubusercontent.com/khuenqdev/Magento2/2.4.3/init | bash -s Magento243 clone
 ```
 
-If you want to install the Magento 2, use like that:
+If you want to install Magento 2, use like that:
 
 ```
 cd MYMAGENTO2

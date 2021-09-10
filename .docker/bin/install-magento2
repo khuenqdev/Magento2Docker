@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-if [ $@ ]; then
-  composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition:$1 . ;
-else
-  composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition . ;
-fi
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition:2.4.3 . ;
 chmod u+w -R ./var ./vendor ./pub/static ./pub/media ./app/etc \
 && chmod u+x ./bin/magento \
 && php -f ./bin/magento setup:install --base-url=http://localhost/ \
