@@ -10,7 +10,7 @@ git config --global diff.renamelimit 5000
 
 sudo chmod -R u+x ./*
 
-docker image pull khuenqdev/magento2
+docker image pull khuenqdev/magento243
 
 if [ "$(uname)" == "Darwin" ]; then
     git checkout -f mac;
