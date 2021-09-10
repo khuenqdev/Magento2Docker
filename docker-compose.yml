@@ -1,7 +1,7 @@
 version: '2'
 services:
   apache:
-    image: khuenqdev/magento243
+    image: khuenqdev/magento243:latest
     ports:
       - "80:80" # web
       - "9001:9000" # xdebug
