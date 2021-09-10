@@ -21,7 +21,7 @@ chmod u+w -R ./var ./vendor ./pub/static ./pub/media ./app/etc \
     --use-sample-data \
 && mv ./app/etc/env.php ./app/etc/env.original.php;
 cp -rv /var/www/env.sample.php ./app/etc/env.php;
-n98 cron:install;
+php -f bin/magento cron:install;
 php -f ./bin/magento indexer:set-mode schedule;
 cp ~/.composer/auth.json var/composer_home/auth.json \
 && php -f ./bin/magento sampledata:deploy \
@@ -30,7 +30,7 @@ cp ~/.composer/auth.json var/composer_home/auth.json \
 && php -f ./bin/magento cache:flush;
 mv package.json.sample package.json ; mv Gruntfile.js.sample Gruntfile.js;
 npm i;
-php -f ./bin/magento deploy:mode:set production \
+php -f ./bin/magento deploy:mode:set developer \
 && composer dump-autoload -o \
 && echo "
 ===================== 🚀 Done 🚀 ===================
