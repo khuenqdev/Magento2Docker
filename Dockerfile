@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:7.2-apache
 
 MAINTAINER Khue Quang Nguyen <khuenq.devmail@gmail.com>
 
@@ -48,7 +48,7 @@ RUN echo "Install mcrypt" \
 
 RUN echo "Install PHP extensions" \
 	docker-php-ext-configure \
-  	gd --with-freetype --with-jpeg; \
+  	gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
   	docker-php-ext-install \
   	opcache \
   	gd \
