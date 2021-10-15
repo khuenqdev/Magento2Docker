@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition:2.2.11 . ;
+composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition:2.3.7 . ;
 chmod u+w -R ./var ./vendor ./pub/static ./pub/media ./app/etc \
 && chmod u+x ./bin/magento \
 && php -f ./bin/magento setup:install --base-url=http://localhost/ \
