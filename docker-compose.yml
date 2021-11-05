@@ -1,8 +1,8 @@
 version: '2'
 services:
   apache:
-    #image: khuenqdev/magento191:latest
-    build: .
+    image: localhost:5000/magento191:latest
+    #build: .
     ports:
       - "80:80" # web
       - "9001:9000" # xdebug

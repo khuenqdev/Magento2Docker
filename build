@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-docker build --tag khuenqdev/magento191 . && docker push -a -q khuenqdev/magento191
+docker build -t localhost:5000/magento191 .
+docker push localhost:5000/magento191
