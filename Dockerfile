@@ -59,7 +59,7 @@ ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
 
 RUN wget https://files.magerun.net/n98-magerun.phar \
     && chmod +x ./n98-magerun.phar \
-    && mv ./n98-magerun.phar ./n98
+    && mv ./n98-magerun.phar ./n98 \
     && cp ./n98 /usr/local/bin
 
 # Configuring system
