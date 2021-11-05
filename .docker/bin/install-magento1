@@ -31,7 +31,7 @@ n98 db:create ;
 
 n98 db:import --drop magento_sample_data_for_1.9.1.0.sql ;
 
-url=http://magento.test/
+url=http://localhost/
 
 n98 config:set "web/secure/base_url" $url ;
 
