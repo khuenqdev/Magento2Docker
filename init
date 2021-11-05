@@ -10,7 +10,7 @@ git config --global diff.renamelimit 5000
 
 sudo chmod -R u+x ./*
 
-docker image pull khuenqdev/magento243
+docker image pull khuenqdev/magento191
 
 sed -i '' -e "s/<project_name>/$1/g" docker-compose.yml;
 
