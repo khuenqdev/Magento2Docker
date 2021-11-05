@@ -40,10 +40,6 @@ RUN apt-get update \
 
 # Install Magento Dependencies
 
-RUN echo "Install mcrypt" \
-	&& apt-get update && apt-get install -y libmcrypt-dev \
-	&& apt-get install php5.6-mcrypt
-
 RUN echo "Install PHP extensions" \
 	docker-php-ext-configure \
         gd --with-freetype --with-jpeg; \
@@ -57,7 +53,8 @@ RUN echo "Install PHP extensions" \
         soap \
         xsl \
         sockets \
-        zip
+        zip \
+        mcrypt
 
 ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
 
