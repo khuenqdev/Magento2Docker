@@ -57,17 +57,6 @@ RUN echo "Install PHP extensions" \
 	sockets \
   	zip
 
-# Install oAuth
-
-RUN apt-get update \
-  	&& apt-get install -y \
-  	libpcre3 \
-  	libpcre3-dev \
-  	# php-pear \
-  	&& pecl install oauth \
-  	&& echo "extension=oauth.so" > /usr/local/etc/php/conf.d/docker-php-ext-oauth.ini
-
-
 ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
 # Configuring system
 

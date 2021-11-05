@@ -1,7 +1,7 @@
 version: '2'
 services:
   apache:
-    image: khuenqdev/magento243:latest
+    image: khuenqdev/magento191:latest
     ports:
       - "80:80" # web
       - "9001:9000" # xdebug
@@ -31,48 +31,6 @@ services:
       - MYSQL_PASSWORD=magento
     volumes:
       - dbdata:/var/lib/mysql
-    networks:
-      - <project_name>-network
-
-  redis:
-    image: redis
-    ports:
-     - 6379
-    networks:
-      - <project_name>-network
-
-  redis-session:
-    image: redis
-    ports:
-     - 6379
-    networks:
-      - <project_name>-network
-
-  mailhog:
-    image: mailhog/mailhog
-    ports:
-      - 1025:1025
-      - 8025:8025
-    networks:
-      - <project_name>-network
-
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
-    environment:
-      - node.name=elasticsearch
-      - cluster.name=docker-cluster
-      - discovery.seed_hosts=elasticsearch
-      - cluster.initial_master_nodes=elasticsearch
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - ./elasticsearchdata:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
     networks:
       - <project_name>-network
 
