@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:5.6-apache
 
 MAINTAINER Khue Quang Nguyen <khuenq.devmail@gmail.com>
 
@@ -71,43 +71,8 @@ RUN apt-get update \
   	&& pecl install oauth \
   	&& echo "extension=oauth.so" > /usr/local/etc/php/conf.d/docker-php-ext-oauth.ini
 
-# Install Node, NVM, NPM and Grunt
-
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
-  	&& apt-get install -y nodejs build-essential \
-    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | sh \
-    && npm i -g grunt-cli yarn
-
-# Install Composer
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer --version=2.1.6
-
-# Install Code Sniffer
-
-RUN git clone https://github.com/magento/marketplace-eqp.git ~/.composer/vendor/magento/marketplace-eqp
-RUN cd ~/.composer/vendor/magento/marketplace-eqp && composer install
-RUN ln -s ~/.composer/vendor/magento/marketplace-eqp/vendor/bin/phpcs /usr/local/bin;
 
 ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
-
-# Install XDebug
-
-RUN yes | pecl install xdebug && \
-	 echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.iniOLD
-
-# Install Mhsendmail
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install golang-go \
-   && mkdir /opt/go \
-   && export GOPATH=/opt/go \
-   && go get github.com/mailhog/mhsendmail
-
-# Install Magerun 2
-
-RUN wget https://files.magerun.net/n98-magerun2.phar \
-	&& chmod +x ./n98-magerun2.phar \
-	&& cp ./n98-magerun2.phar /usr/local/bin/
-
 # Configuring system
 
 ADD .docker/config/php.ini /usr/local/etc/php/php.ini

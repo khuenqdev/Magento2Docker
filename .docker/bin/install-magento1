@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+## Magento 1 + SampleData
+
+sudo apt-get update && \
+sudo apt-get install -y git wget unzip
+
+git clone https://github.com/OpenMage/magento-mirror.git ./ ;
+
+wget https://raw.githubusercontent.com/Vinai/compressed-magento-sample-data/1.9.1.0/compressed-magento-sample-data-1.9.1.0.tgz ;
+
+tar -xf compressed-magento-sample-data-1.9.1.0.tgz ;
+
+cp -rv magento-sample-data-1.9.1.0/* ./ ;
+
+rm -rf magento-sample-data-1.9.1.0/ ;
+
+## Translate pt_BR
+
+wget http://mariosam.com.br/wp-content/uploads/2013/02/Traducao_Magento_ptBR_19xx_MarioSAM_v12.zip ;
+
+unzip Traducao_Magento_ptBR_19xx_MarioSAM_v12.zip ;
+
+cp -rv Traducao_Magento_ptBR_19xx_MarioSAM/pt_BR app/locale/ ;
+
+cp -rv Traducao_Magento_ptBR_19xx_MarioSAM/rwd/ app/design/frontend/ ;
+
+rm -rf Traducao_Magento_ptBR_19xx_MarioSAM Traducao_Magento_ptBR_19xx_MarioSAM_v12.zip  ;
+
+## Installing using n98-magerun tool
+
+n98 local-config:generate -q localhost root root magento files admin;
+
+n98 db:create ;
+
+n98 db:import --drop magento_sample_data_for_1.9.1.0.sql ;
+
+url=http://magento.test/
+
+n98 config:set "web/secure/base_url" $url ;
+
+n98 config:set "web/unsecure/base_url" $url ;
+
+n98 admin:user:create admin rafael@magento.com admin123 Rafael Gomes ;
+
+n98 customer:create rafael@magento.com admin123 Rafael Gomes -q ;
+
+n98 admin:notifications ;
+
+n98 design:demo-notice --off --global -q ;
+
+n98 config:set web/seo/use_rewrites 0 ;
+
+n98 cache:flush ;
+n98 index:reindex:all;
+
+chmod -R o+w media var ;
+
+chmod o+w app/etc ;
+
+find . -type d -exec chmod 775 '{}' \;
+
+find . -type f -exec chmod 644 '{}' \;
+
+chmod -Rv 777 app/etc var/ media/ ;
