@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:7.3-apache
 
 MAINTAINER Khue Quang Nguyen <khuenq.devmail@gmail.com>
 
@@ -11,7 +11,7 @@ RUN apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	libfreetype6-dev \
 	libicu-dev \
-        libssl-dev \
+    libssl-dev \
 	libjpeg62-turbo-dev \
 	libmcrypt-dev \
 	libedit-dev \
@@ -40,6 +40,10 @@ RUN apt-get update \
 
 # Install Magento Dependencies
 
+RUN echo "Install mcrypt" \
+	&& apt-get update && apt-get install -y libmcrypt-dev \
+	&& pecl install mcrypt-1.0.3
+
 RUN echo "Install PHP extensions" \
 	docker-php-ext-configure \
         gd --with-freetype --with-jpeg; \
@@ -53,8 +57,7 @@ RUN echo "Install PHP extensions" \
         soap \
         xsl \
         sockets \
-        zip \
-        mcrypt
+        zip
 
 ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
 
