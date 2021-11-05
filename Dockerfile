@@ -52,7 +52,7 @@ RUN echo "Install PHP extensions" \
         pdo_mysql \
         soap \
         xsl \
-	sockets \
+        sockets \
         zip
 
 ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
