@@ -2,8 +2,6 @@ FROM php:5.6-apache
 
 MAINTAINER Khue Quang Nguyen <khuenq.devmail@gmail.com>
 
-ENV XDEBUG_PORT 9000
-
 # Install System Dependencies
 
 RUN apt-get update \
@@ -13,7 +11,7 @@ RUN apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	libfreetype6-dev \
 	libicu-dev \
-  	libssl-dev \
+        libssl-dev \
 	libjpeg62-turbo-dev \
 	libmcrypt-dev \
 	libedit-dev \
@@ -44,18 +42,18 @@ RUN apt-get update \
 
 RUN echo "Install PHP extensions" \
 	docker-php-ext-configure \
-  	gd --with-freetype --with-jpeg; \
-  	docker-php-ext-install \
-  	opcache \
-  	gd \
-  	bcmath \
-  	intl \
-  	mbstring \
-  	pdo_mysql \
-  	soap \
-  	xsl \
+        gd --with-freetype --with-jpeg; \
+        docker-php-ext-install \
+        opcache \
+        gd \
+        bcmath \
+        intl \
+        mbstring \
+        pdo_mysql \
+        soap \
+        xsl \
 	sockets \
-  	zip
+        zip
 
 ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
 # Configuring system

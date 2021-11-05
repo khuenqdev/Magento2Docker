@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 ## Magento 1 + SampleData
 
-sudo apt-get update && \
-sudo apt-get install -y git wget unzip
-
 git clone https://github.com/OpenMage/magento-mirror.git ./ ;
 
 wget https://raw.githubusercontent.com/Vinai/compressed-magento-sample-data/1.9.1.0/compressed-magento-sample-data-1.9.1.0.tgz ;
