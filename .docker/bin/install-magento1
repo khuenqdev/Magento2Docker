@@ -25,7 +25,7 @@ rm -rf Traducao_Magento_ptBR_19xx_MarioSAM Traducao_Magento_ptBR_19xx_MarioSAM_v
 
 ## Installing using n98-magerun tool
 
-n98 local-config:generate -q localhost root root magento files admin;
+n98 local-config:generate -q db root root magento files admin;
 
 n98 db:create ;
 
