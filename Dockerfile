@@ -42,10 +42,6 @@ RUN apt-get update \
 
 # Install Magento Dependencies
 
-RUN echo "Install mcrypt" \
-	&& apt-get update && apt-get install -y libmcrypt-dev \
-	&& pecl install mcrypt-1.0.3
-
 RUN echo "Install PHP extensions" \
 	docker-php-ext-configure \
   	gd --with-freetype --with-jpeg; \
