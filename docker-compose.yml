@@ -1,7 +1,7 @@
 version: '2'
 services:
   apache:
-    image: khuenqdev/magento243:latest
+    image: khuenqdev/magento245php81:latest
     ports:
       - "80:80" # web
       - "9001:9000" # xdebug
@@ -57,7 +57,7 @@ services:
       - <project_name>-network
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17
     environment:
       - node.name=elasticsearch
       - cluster.name=docker-cluster

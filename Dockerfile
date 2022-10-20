@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.1-apache
 
 MAINTAINER Khue Quang Nguyen <khuenq.devmail@gmail.com>
 
@@ -80,7 +80,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
 
 # Install Composer
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer --version=2.1.6
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer --version=2.2.17
 
 # Install Code Sniffer
 
@@ -90,23 +90,12 @@ RUN ln -s ~/.composer/vendor/magento/marketplace-eqp/vendor/bin/phpcs /usr/local
 
 ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
 
-# Install XDebug
-
-RUN yes | pecl install xdebug && \
-	 echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.iniOLD
-
 # Install Mhsendmail
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install golang-go \
    && mkdir /opt/go \
    && export GOPATH=/opt/go \
    && go get github.com/mailhog/mhsendmail
-
-# Install Magerun 2
-
-RUN wget https://files.magerun.net/n98-magerun2.phar \
-	&& chmod +x ./n98-magerun2.phar \
-	&& cp ./n98-magerun2.phar /usr/local/bin/
 
 # Configuring system
 
@@ -118,8 +107,6 @@ COPY .docker/users/* /var/www/
 RUN chmod +x /usr/local/bin/*
 RUN ln -s /etc/apache2/sites-available/magento.conf /etc/apache2/sites-enabled/magento.conf
 
-RUN curl -o /etc/bash_completion.d/m2install-bash-completion https://raw.githubusercontent.com/yvoronoy/m2install/master/m2install-bash-completion
-RUN curl -o /etc/bash_completion.d/n98-magerun2.phar.bash https://raw.githubusercontent.com/netz98/n98-magerun2/master/res/autocompletion/bash/n98-magerun2.phar.bash
 RUN echo "source /etc/bash_completion" >> /root/.bashrc
 RUN echo "source /etc/bash_completion" >> /var/www/.bashrc
 
