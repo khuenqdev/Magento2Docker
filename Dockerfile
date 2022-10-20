@@ -44,7 +44,7 @@ RUN apt-get update \
 
 RUN echo "Install mcrypt" \
 	&& apt-get update && apt-get install -y libmcrypt-dev \
-	&& pecl install mcrypt-1.0.3
+	&& pecl install mcrypt-1.0.5
 
 RUN echo "Install PHP extensions" \
 	docker-php-ext-configure \
@@ -81,13 +81,6 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
 # Install Composer
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer --version=2.2.17
-
-# Install Code Sniffer
-
-RUN git clone https://github.com/magento/marketplace-eqp.git ~/.composer/vendor/magento/marketplace-eqp
-RUN cd ~/.composer/vendor/magento/marketplace-eqp && composer install
-RUN ln -s ~/.composer/vendor/magento/marketplace-eqp/vendor/bin/phpcs /usr/local/bin;
-
 ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
 
 # Install Mhsendmail
